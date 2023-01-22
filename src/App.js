@@ -1,7 +1,20 @@
 import logo from './logo.svg';
 import './App.css';
+import { createClient } from '@supabase/supabase-js'
+import {useEffect} from "react";
 
 function App() {
+
+  const supabase = createClient('https://occxtuuwwbfoduajfopr.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9jY3h0dXV3d2Jmb2R1YWpmb3ByIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzQxMTg2NDYsImV4cCI6MTk4OTY5NDY0Nn0.ZQ99XqHXkrukpCX6tKJDrmP5zMl3h-ulDfqfMy-n1sI')
+
+  async function getCountries() {
+    const countries = await supabase.from('countries').select()
+    console.log(countries)
+  }
+
+  useEffect(() => {
+    getCountries()
+  }, []);
   return (
     <div className="App">
       <header className="App-header">
