@@ -14,8 +14,16 @@ function App() {
     console.log(countries)
   }
 
+  async function callFunction() {
+    const { data, error } = await supabase.functions.invoke('hello-world', {
+      body: { name: 'Functions' },
+    })
+    console.log(data, error);
+  }
+
   useEffect(() => {
-    getCountries()
+    getCountries();
+    callFunction();
   }, []);
   return (
     <div className="App">
